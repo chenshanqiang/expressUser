@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="bg-primary">
+                    <tr>
+                        <th>序号</th>
+                        <th>姓名</th>
+                        <th>年龄</th>
+                        <th>性别</th>
+                        <th>手机号</th>
+                        <th>地址</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="user">
+                    {{#each personInfoList}}
+                    <tr>
+                        <td class="userId">{{this.user_id}}</td>
+                        <td>{{this.user_name}}</td>
+                        <td>{{this.user_age}}</td>
+                        <td>{{this.user_gender}}</td>
+                        <td>{{this.user_phone}}</td>
+                        <td>{{this.user_address}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-primary update" data-toggle="modal" data-target="#myModal">修改</button>
+                            <button type="button" class="btn btn-info del">删除</button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-primary addUser" data-toggle="modal" data-target="#addUser">添加用户</button>
+    </div>
+    <!-- 添加用户模态框 -->
+    <div class="modal fade bs-example-modal-lg" id="addUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加用户
+                    </h4>
+                </div>
+                <div class="modal-body" style="height:450px;overflow: auto;">
+                    <form role="form" id="saveReportForm" action="/user/update" method="post">
+                        <div class="form-group">
+                            <label for="add_name">姓名</label>
+                            <input type="text" name="name" value="" class="form-control" id="add_name" placeholder="请输入姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="add_age">年龄</label>
+                            <input type="text" name="age" value="" class="form-control" id="add_age" placeholder="请输入年龄">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="add_gender">性别</label>
+                            <input type="text" name="gender" value="" class="form-control" id="add_gender" placeholder="请输入性别">
+                        </div>
+                        <div class="form-group">
+                            <label for="add_phonenum">手机号</label>
+                            <input type="text" name="phonenum" value="" class="form-control" id="add_phonenum" placeholder="请输入手机号">
+                        </div>
+                        <div class="form-group">
+                            <label for="add_address">地址</label>
+                            <input type="text" name="address" value="" class="form-control" id="add_address" placeholder="请输入地址">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer bg-info">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="add_user">提交</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <!-- 用户信息修改模态框（Modal） -->
+    <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        更新用户信息
+                    </h4>
+                </div>
+                <div class="modal-body" style="height:450px;overflow: auto;">
+                    <form role="form" id="saveReportForm" action="/user/update" method="post">
+                        <div class="form-group">
+                            <label for="order">序号</label>
+                            <input type="text" name="id" value="" class="form-control" id="order" placeholder="请输入姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" name="name" value="" class="form-control" id="name" placeholder="请输入姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="age">年龄</label>
+                            <input type="text" name="age" value="" class="form-control" id="age" placeholder="请输入年龄">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">性别</label>
+                            <input type="text" name="gender" value="" class="form-control" id="gender" placeholder="请输入性别">
+                        </div>
+                        <div class="form-group">
+                            <label for="phonenum">手机号</label>
+                            <input type="text" name="phonenum" value="" class="form-control" id="phonenum" placeholder="请输入手机号">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">地址</label>
+                            <input type="text" name="address" value="" class="form-control" id="address" placeholder="请输入地址">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer bg-info">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="subUp">提交更改</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <script type="text/javascript">
+        $(function() {
+            // 用户信息更改模态框
+            $('#myModal').modal('hide');
+            // 提交更新数据按钮
+            $('#subUp').on('click', function() {
+                var order = $('#order').val(),
+                    name = $('#name').val(),
+                    age = $('#age').val(),
+                    gender = $('#gender').val(),
+                    phonenum = $('#phonenum').val(),
+                    address = $('#address').val();
+                $.ajax({
+                    type: "post",
+                    url: "/user/update_submit",
+                    data: {
+                        id: order,
+                        name: name,
+                        age: age,
+                        gender: gender,
+                        phonenum: phonenum,
+                        address: address
+                    },
+                    success: function(res) {
+                        alert(res);
+                        $('#myModal').modal('hide');
+                        location.reload();
+                    },
+                    error: function(err) {
+                        alert(err);
+                    }
+                })
+            });
+            // 添加用户按钮事件
+            $('#add_user').on('click', function() {
+                var name = $('#add_name').val(),
+                    age = $('#add_age').val(),
+                    gender = $('#add_gender').val(),
+                    phonenum = $('#add_phonenum').val(),
+                    address = $('#add_address').val();
+                $.ajax({
+                    type: "post",
+                    url: "/user/add_user_data",
+                    data: {
+                        name: name,
+                        age: age,
+                        gender: gender,
+                        phonenum: phonenum,
+                        address: address
+                    },
+                    success: function(res) {
+                        $('#myModal').modal('hide');
+                        location.reload();
+                    },
+                    error: function(err) {
+                        alert(err);
+                    }
+                })
+            });
+
+            // 修改数据
+            $('.update').on('click', function() {
+                var userId = $(this).parent().parent().children('.userId').text();
+                $.ajax({
+                    type: "post",
+                    url: "/user/update",
+                    data: {
+                        userId: userId
+                    },
+                    success: function(res) {
+                        $('#order').val(res[0].user_id);
+                        $('#name').val(res[0].user_name);
+                        $('#age').val(res[0].user_age);
+                        $('#gender').val(res[0].user_gender);
+                        $('#phonenum').val(res[0].user_phone);
+                        $('#address').val(res[0].user_address);
+                    }
+                })
+            });
+            // 删除数据
+            $('.del').on('click', function() {
+                var userId = $(this).parent().parent().children('.userId').text();
+                $.ajax({
+                    type: 'post',
+                    url: '/user/del_main_data',
+                    data: {
+                        userId: userId
+                    },
+                    success: function(res) {
+                        alert(res)
+                        location.reload();
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>
